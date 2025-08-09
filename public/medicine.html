@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Division - RevisX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hero-banner {
+            background: linear-gradient(to right, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-banner-icon {
+            position: absolute;
+            bottom: -20px;
+            left: 40px;
+            font-size: 12rem;
+            color: rgba(16, 185, 129, 0.1);
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body class="Batangas">
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm" style="height: 80px; min-height: 0;">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="/public/revisx(1).svg" alt="RevisX Logo" class="h-20 w-auto">
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-600 transition-colors font-medium home-link">Home</a>
+                <a href="divisions.html" class="text-gray-600 transition-colors font-medium font-bold divisions-link">Divisions</a>
+                <a href="articles.html" class="text-gray-600 transition-colors font-medium articles-link">Articles</a>
+                <a href="#" class="text-gray-600 transition-colors font-medium about-link">About</a>
+                <a href="submit_manuscript.html" class="text-gray-600 hover:text-gray-800 transition-colors font-medium">Submit</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="login.html" class="hidden md:block bg-gradient-to-r from-revizBlue to-revizGreen text-white px-5 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity">
+                    Subscribe
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-banner py-24 md:py-32">
+        <i class="fas fa-notes-medical hero-banner-icon"></i>
+        <div class="container mx-auto px-4 max-w-6xl text-left relative">
+            <h1 class="font-heading text-4xl md:text-6xl font-bold text-revizGreen mb-4">Medicine</h1>
+            <p class="text-xl text-gray-600 max-w-3xl">Advancing human health through cutting-edge research in diagnostics, treatment, and prevention of disease.</p>
+        </div>
+    </section>
+
+    <main class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <!-- Featured Articles Section -->
+            <section id="featured-articles">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-8">Featured Articles</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Placeholder Article 1 -->
+                    <div class="article-card green-theme bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="h-48 bg-revizGreen/10 flex items-center justify-center"><i class="fas fa-notes-medical text-5xl text-revizGreen/50"></i></div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">Immunotherapy: A New Frontline in Cancer Treatment</h3>
+                            <p class="text-gray-600 text-sm mb-4">Harnessing the body's own immune system to fight cancer cells more effectively.</p>
+                            <a href="#" class="text-revizGreen hover:underline font-medium text-sm">Read More →</a>
+                        </div>
+                    </div>
+                    <!-- Placeholder Article 2 -->
+                    <div class="article-card green-theme bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="h-48 bg-revizGreen/10 flex items-center justify-center"><i class="fas fa-notes-medical text-5xl text-revizGreen/50"></i></div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">The Gut Microbiome and Its Role in Health</h3>
+                            <p class="text-gray-600 text-sm mb-4">Discover how the trillions of microbes in our gut influence everything from digestion to mental health.</p>
+                            <a href="#" class="text-revizGreen hover:underline font-medium text-sm">Read More →</a>
+                        </div>
+                    </div>
+                    <!-- Placeholder Article 3 -->
+                    <div class="article-card green-theme bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="h-48 bg-revizGreen/10 flex items-center justify-center"><i class="fas fa-notes-medical text-5xl text-revizGreen/50"></i></div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">Advances in mRNA Vaccine Technology</h3>
+                            <p class="text-gray-600 text-sm mb-4">Beyond COVID-19, exploring the future applications of mRNA vaccines for various diseases.</p>
+                            <a href="#" class="text-revizGreen hover:underline font-medium text-sm">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submit Manuscript Section -->
+            <section id="submit-manuscript" class="mt-16 md:mt-24">
+                <div class="bg-gradient-to-r from-revizBlue/5 to-revizGreen/5 rounded-xl p-8 md:p-12 border border-gray-100 text-center">
+                    <h2 class="font-heading text-3xl font-bold text-gray-800 mb-3">Have a Breakthrough to Share?</h2>
+                    <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Our journal welcomes submissions in all areas of medicine. Share your work with a global community of young scientists and researchers.</p>
+                    <a href="submit_manuscript.html" class="bg-gradient-to-r from-revizBlue to-revizGreen text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity">
+                        Submit Your Manuscript
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 py-12 border-t border-gray-200">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">© 2023 RevisX Science Journal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

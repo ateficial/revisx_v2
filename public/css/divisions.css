@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+
+:root {
+    --reviz-blue: #3B82F6;
+    --reviz-green: #10B981;
+    --reviz-orange: #F59E0B;
+    --reviz-purple: #8B5CF6;
+}
+
+body {
+    background-color: white;
+    color: #1F2937;
+}
+
+/* Navigation Styles */
+nav {
+    border-bottom: 1px solid rgba(229, 231, 235, 1);
+}
+
+nav a:hover.home-link { color: var(--reviz-blue); }
+nav a:hover.divisions-link { color: var(--reviz-green); }
+nav a:hover.articles-link { color: var(--reviz-orange); }
+nav a:hover.about-link { color: var(--reviz-purple); }
+
+/* Division Card Styles */
+.division-card {
+    background: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    border: 1px solid #f3f4f6;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.division-card:hover {
+    border-color: var(--reviz-blue);
+    box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -2px rgba(59, 130, 246, 0.1);
+    transform: translateY(-5px);
+}
+
+.division-card:first-child:hover {
+    border-color: var(--reviz-green);
+    box-shadow: 0 8px 15px -3px rgba(16, 185, 129, 0.2), 0 4px 6px -2px rgba(16, 185, 129, 0.1);
+}
+
+.subdivision-card {
+    transition: all 0.3s ease;
+}
+
+.subdivision-card.green-theme {
+    background: linear-gradient(to right, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+}
+
+.subdivision-card.blue-theme {
+    background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+}
+
+.subdivision-card:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transform: translateY(-2px);
+}
+
+.tab-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+#medicine-biology-subdivisions, #computer-science-subdivisions {
+    display: grid;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+#medicine-biology-subdivisions:not(.active), 
+#computer-science-subdivisions:not(.active) {
+    opacity: 0;
+    transform: translateY(10px);
+    display: none;
+}
+
+.division-toggle .fa-chevron-down {
+    transition: transform 0.3s ease;
+}
+
+.division-toggle .fa-chevron-down.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.text-revizGreen {
+    color: var(--reviz-green);
+}
+
+.text-revizBlue {
+    color: var(--reviz-blue);
+}
+
+.text-revizOrange {
+    color: var(--reviz-orange);
+}
+
+.text-revizPurple {
+    color: var(--reviz-purple);
+}

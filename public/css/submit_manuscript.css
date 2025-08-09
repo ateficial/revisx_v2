@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+
+body {
+    background-color: white;
+    color: #1F2937;
+}
+
+.file-upload {
+    border: 2px dashed #D1D5DB;
+    transition: all 0.3s ease;
+}
+
+.file-upload:hover {
+    border-color: #3B82F6;
+    background-color: #EFF6FF;
+}
+
+.file-upload.active {
+    border-color: #10B981;
+    background-color: #ECFDF5;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.checklist-item::before {
+    content: "✓";
+    color: #10B981;
+    font-weight: bold;
+    display: inline-block;
+    width: 1.5em;
+    margin-left: -1.5em;
+}
+
+.requirements-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.requirements-list li::before {
+    content: "•";
+    color: #3B82F6;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
