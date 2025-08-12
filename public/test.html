@@ -3,479 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles - RevisX</title>
+    <title>RevisX - {{title}}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom Tailwind config from user file for consistent styling */
-        .Batangas {
-            font-family: 'Batangas', sans-serif;
+        /* Custom Tailwind config for consistent styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+        .font-heading {
+            font-family: 'Inter', sans-serif; /* Ensure headings also use Inter */
         }
 
-        /* Hide "no results" message by default */
-        #no-results {
-            display: none;
+        /* Define custom colors for Tailwind */
+        :root {
+            --reviz-blue: #3B82F6; /* blue-500 */
+            --reviz-green: #10B981; /* green-500 */
+            --reviz-orange: #F97316; /* orange-500 */
+            --reviz-purple: #8B5CF6; /* purple-500 */
+        }
+
+        .text-revizBlue { color: var(--reviz-blue); }
+        .bg-revizBlue\/10 { background-color: rgba(59, 130, 246, 0.1); }
+        .hover\:text-revizBlue:hover { color: var(--reviz-blue); }
+        .border-revizBlue { border-color: var(--reviz-blue); }
+        .bg-revizBlue\/5 { background-color: rgba(59, 130, 246, 0.05); }
+
+        .text-revizGreen { color: var(--reviz-green); }
+        .bg-revizGreen\/10 { background-color: rgba(16, 185, 129, 0.1); }
+        .hover\:text-revizGreen:hover { color: var(--reviz-green); }
+        .bg-gradient-to-r.from-revizGreen\/5 { background-image: linear-gradient(to right, rgba(16, 185, 129, 0.05), rgba(59, 130, 246, 0.05)); }
+
+        .text-revizOrange { color: var(--reviz-orange); }
+        .hover\:text-revizOrange:hover { color: var(--reviz-orange); }
+
+        .text-revizPurple { color: var(--reviz-purple); }
+        .bg-revizPurple { background-color: var(--reviz-purple); }
+        .hover\:bg-revizPurple\/90:hover { background-color: rgba(139, 92, 246, 0.9); }
+        .hover\:text-revizPurple:hover { color: var(--reviz-purple); }
+
+        /* Specific styles for the Table of Contents */
+        .toc-link.active {
+            font-weight: 600; /* Semi-bold */
+            color: var(--reviz-blue); /* Highlight active link */
+            border-left-color: var(--reviz-blue); /* Blue border for active */
+        }
+        .toc-link {
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Custom prose styles for better readability */
+        .prose-custom h2 {
+            font-size: 2.25rem; /* text-4xl */
+            margin-top: 2.5em; /* More space above main sections */
+            margin-bottom: 1em;
+            padding-bottom: 0.5em;
+            font-weight: 700; /* Bold headers */
+            position: relative;
+        }
+        .prose-custom h2::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-bottom: 4px solid #1e293b;
+        }
+        .prose-custom h3 {
+            font-size: 1.75rem; /* text-3xl */
+            margin-top: 2em;
+            margin-bottom: 0.75em;
+            padding-bottom: 0.3em;
+            position: relative;
+        }
+        .prose-custom h3::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-bottom: 2px solid #64748b;
+        }
+        .prose-custom p {
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.75; /* leading-relaxed */
+            margin-bottom: 1.25em;
+        }
+        .prose-custom ol, .prose-custom ul {
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.75;
+            margin-bottom: 1.25em;
+            padding-left: 1.5em;
+        }
+        .prose-custom li {
+            margin-bottom: 0.5em;
+        }
+        .prose-custom blockquote {
+            font-size: 1.5rem; /* text-2xl */
+            border-left: 4px solid var(--reviz-blue);
+            background-color: rgba(59, 130, 246, 0.05);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #4b5563; /* gray-700 */
+        }
+        .toc-sidebar {
+            position: sticky;
+            top: 20px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .toc-content h3 {
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        .toc-content ul {
+            max-height: none;
+            overflow-y: visible;
+        }
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: #4b5563;
+            font-size: 0.95rem;
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .toc-link:hover {
+            color: var(--reviz-blue);
+            background: #f3f4f6;
+            border-left-color: var(--reviz-blue);
+        }
+        .toc-link.active {
+            color: var(--reviz-blue);
+            font-weight: 600;
+            border-left-color: var(--reviz-blue);
+            background: #f3f4f6;
+        }
+        @media (max-width: 1024px) {
+            .toc-sidebar {
+                display: none;
+            }
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        revizBlue: '#3B82F6',
-                        revizGreen: '#10B981',
-                        revizOrange: '#F59E0B',
-                        revizPurple: '#8B5CF6',
-                    },
-                    fontFamily: {
-                        sans: ['Batangas', 'sans-serif'],
-                        heading: ['Batangas', 'sans-serif'],
-                    },
-                },
-            },
-        };
-    </script>
 </head>
-<body class="Batangas bg-gray-50">
-    <!-- Navigation Bar -->
-    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm" style="height: 80px; min-height: 0;">
-        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+<body>
+    <!-- Navbar from crispr-article.html -->
+    <nav class="bg-white border-b border-gray-200 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center">
-                <!-- Updated logo with larger Tailwind classes and removed inline style -->
-                <img src="/public/revisx._new.svg" alt="RevisX Logo" class="h-32 w-auto md:h-40 lg:h-48 object-contain mr-2">
-            </a>
+                <img src="REVISX_final.svg" alt="RevisX Logo" class="h-10 w-auto rounded-full">
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-gray-600 transition-colors font-medium home-link">Home</a>
-                <a href="divisions.html" class="text-gray-600 transition-colors font-medium divisions-link">Divisions</a>
-                <a href="articles.html" class="text-gray-600 transition-colors font-medium font-bold articles-link">Articles</a>
-                <a href="#" class="text-gray-600 transition-colors font-medium about-link">About</a>
-                <a href="submit_manuscript.html" class="text-gray-600 hover:text-gray-800 transition-colors font-medium">Submit</a>
+                <a href="index.html" class="text-gray-600 hover:text-revizBlue font-medium">Home</a>
+                <a href="divisions.html" class="text-gray-600 hover:text-revizGreen font-medium">Divisions</a>
+                <a href="articles.html" class="text-gray-600 hover:text-revizOrange font-medium">Articles</a>
+                <a href="about.html" class="text-gray-600 hover:text-revizPurple font-medium">About</a>
+                <a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-600 hover:text-gray-800 font-medium">Submit</a>
             </div>
-            <div class="flex items-center space-x-4">
-                <button class="md:hidden text-gray-600">
-                    <i class="fas fa-bars text-xl"></i>
+            <div class="md:hidden">
+                <button class="text-gray-600 hover:text-revizBlue">
+                    <i class="fas fa-bars"></i>
                 </button>
-                <a href="login.html" class="hidden md:block bg-gradient-to-r from-revizBlue to-revizGreen text-white px-5 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity">
-                    Subscribe
-                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section: Glassy, Youthful, Modern -->
-    <section class="relative py-12">
-        <div class="container mx-auto px-4">
-            <div class="relative flex flex-col items-center justify-center text-center min-h-[260px]">
-                <!-- Glassy Card -->
-                <div class="backdrop-blur-xl bg-white/30 border border-white/40 rounded-2xl shadow-2xl p-8 w-full max-w-4xl mx-auto flex flex-col items-center relative z-10">
-                    <h1 class="font-heading text-3xl md:text-4xl font-extrabold text-revizBlue mb-2 drop-shadow-lg">Articles & Research</h1>
-                    <p class="text-base md:text-lg text-gray-700 mb-4 max-w-lg mx-auto font-medium">This page provides access to a curated collection of scientific articles and research papers across multiple disciplines. Browse, search, and filter peer-reviewed publications, reviews, and literature to support your academic and professional pursuits.</p>
-                    <a href="submit_manuscript.html" class="inline-block bg-gradient-to-r from-revizBlue to-revizGreen text-white font-bold px-6 py-2 rounded-full shadow hover:bg-white hover:text-revizBlue transition-colors duration-200 border border-revizBlue">Submit Your Article</a>
-                </div>
-                <!-- Decorative gradient blobs for energy -->
-                <div class="absolute left-0 top-0 w-32 h-32 bg-gradient-to-br from-revizGreen to-revizBlue rounded-full opacity-20 blur-2xl"></div>
-                <div class="absolute right-0 bottom-0 w-24 h-24 bg-gradient-to-tr from-revizPurple to-revizBlue rounded-full opacity-20 blur-2xl"></div>
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-revizGreen/5 to-revizBlue/5 py-12">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <!-- Article Categories -->
+            <div class="mb-4 flex flex-wrap items-center gap-3">
+                <!-- Use dynamic placeholders for categories -->
+                {{subject_tags}}
             </div>
-        </div>
-    </section>
-    <section class="py-16 pt-4">
-        <div class="container mx-auto px-4">
-            <div class="mb-10">
-                <h1 class="font-heading text-3xl font-bold text-gray-800 text-center mb-6">Articles</h1>
-                <form class="flex justify-center w-full" id="filter-form">
-                    <div class="relative w-full max-w-3xl">
-                        <input type="text" id="article-search" placeholder="Search articles..." class="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:ring-revizBlue focus:border-revizBlue text-gray-700 bg-white text-lg" />
-                        <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                            <i class="fas fa-search text-xl md:text-2xl"></i>
-                        </span>
-                    </div>
-                </form>
-                <!-- Filters Section: now directly under search bar, outside the form -->
-                <div class="mt-2 bg-white rounded-lg p-2 shadow-sm border border-gray-100 w-full max-w-3xl mx-auto">
-                    <div class="flex flex-col md:flex-row items-center gap-3">
-                        <!-- Article Type Filter -->
-                        <div class="flex items-center gap-2 w-full md:w-auto">
-                            <label class="text-xs font-medium text-gray-700 whitespace-nowrap">Article Type:</label>
-                            <select id="type-filter" class="w-full rounded text-sm py-1 border-gray-300 shadow-sm focus:border-revizBlue focus:ring-revizBlue">
-                                <option value="all">All Types</option>
-                                <option value="article">Article</option>
-                                <option value="review">Review Article</option>
-                                <option value="literature">Literature Review</option>
-                            </select>
-                        </div>
-                        <!-- Year Filter -->
-                        <div class="flex items-center gap-2 w-full md:w-auto">
-                            <label class="text-xs font-medium text-gray-700 whitespace-nowrap">Year:</label>
-                            <select id="year-filter" class="w-full rounded text-sm py-1 border-gray-300 shadow-sm focus:border-revizBlue focus:ring-revizBlue">
-                                <option value="all">All Years</option>
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                            </select>
-                        </div>
-                        <!-- Filter Actions -->
-                        <div class="flex space-x-2 mt-2 md:mt-0">
-                            <button id="clear-filters" class="px-2 py-1 text-gray-600 hover:text-gray-800 transition-colors text-xs font-medium">
-                                Clear
-                            </button>
-                            <button id="apply-filters" class="px-2 py-1 bg-revizBlue text-white rounded hover:bg-blue-600 transition-colors text-xs font-medium">
-                                Apply
-                            </button>
-                        </div>
+            <h1 id="article-main-title" class="font-heading text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight tracking-tight">{{title}}</h1>
+            <p class="text-lg text-gray-700 mb-6 max-w-2xl">{{description}}</p>
+            <div class="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
+                <div class="flex items-center gap-3">
+                    <img src="https://placehold.co/48x48/64748b/fff?text=A" alt="{{authors}}" class="w-12 h-12 rounded-full object-cover border border-gray-200">
+                    <div>
+                        <span class="font-semibold text-gray-900">{{authors}}</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- This is the container for all the articles -->
-            <div id="articles-container" class="flex flex-col space-y-8 w-full mt-8">
-                <!-- 10 Sample Article Cards -->
-                <!-- prettier-ignore -->
-                <!-- Main Divisions Only: Computer Science & Biology and Medicine -->
-                <!-- Added flex-col for mobile and md:flex-row for desktop -->
-                <a href="crispr-article.html" target="_blank" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="article" data-year="2023">
-                    <img src="https://images.unsplash.com/photo-1614308460927-5024ba2e1dcb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="CRISPR gene editing illustration" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizGreen transition-colors leading-snug article-title">CRISPR: Rewriting the Code of Life</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Article</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2023-05-28</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">How gene editing technology is revolutionizing medicine and what it means for our future.</p>
-                        <div class="flex flex-wrap gap-1">
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Biology & Medicine</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Genetics</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Dr. Sarah Chen</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="review" data-year="2023">
-                    <img src="https://images.unsplash.com/photo-1717386255773-a456c611dc4e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI and Robotics" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizBlue transition-colors leading-snug article-title">AI and the Future of Robotics</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Review Article</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2023-06-10</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">How artificial intelligence is revolutionizing robotics and automation in every industry.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Computer Science</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">AI & Robotics</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Alex Johnson, Priya Patel</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="literature" data-year="2023">
-                    <img src="https://images.unsplash.com/photo-1582719366768-de4481b828ce?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Machine Learning" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizBlue transition-colors leading-snug article-title">Machine Learning in Healthcare</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Literature Review</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2023-07-15</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">How machine learning is transforming diagnostics and patient care in modern medicine.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Computer Science</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Biology & Medicine</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Emily Zhang</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="article" data-year="2023">
-                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Neuroscience" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizGreen transition-colors leading-snug article-title">Neuroscience: Mapping the Mind</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Article</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2023-08-01</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">Latest research on how our brains work and what it means for learning and memory.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Biology & Medicine</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Neuroscience</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Dr. Michael Lee</div>
-                    </div>
-                </a>
-                <!-- 6 more placeholder articles -->
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="article" data-year="2024">
-                    <img src="https://images.unsplash.com/photo-1681911046064-e663d5192921?q=80&w=1121&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="DNA Research" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizGreen transition-colors leading-snug article-title">DNA Research and Personalized Medicine</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Article</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2024-01-20</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">The promise and challenges of tailoring medicine to your DNA.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Biology & Medicine</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Genetics</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Dr. Ahmed El-Sayed</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="article" data-year="2024">
-                    <img src="https://images.unsplash.com/photo-1532187863486-ab2f6a84d412?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Quantum Computing" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizBlue transition-colors leading-snug article-title">Quantum Computing: A New Era</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Article</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2024-03-05</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">Exploring the potential and challenges of the next generation of computing technology.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Computer Science</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Quantum Physics</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Dr. Jessica Chen</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="literature" data-year="2024">
-                    <img src="https://images.unsplash.com/photo-1549445258-202c38f29631?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gene Therapy" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizGreen transition-colors leading-snug article-title">Gene Therapy: From Lab to Clinic</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Literature Review</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2024-04-10</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">A comprehensive review of recent advances and ethical considerations in gene therapy.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Biology & Medicine</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Biotechnology</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Dr. Kenji Tanaka</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="article" data-year="2025">
-                    <img src="https://images.unsplash.com/photo-1542456485-61262d9894e2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Network Security" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizBlue transition-colors leading-snug article-title">Advanced Network Security Protocols</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Article</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2025-01-12</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">A deep dive into the latest protocols securing data in a hyper-connected world.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Computer Science</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Cybersecurity</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Maria Sanchez</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="review" data-year="2025">
-                    <img src="https://images.unsplash.com/photo-1628122557457-3f3f3f01f01c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sustainable Energy" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizGreen transition-colors leading-snug article-title">Sustainable Energy Solutions</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Review Article</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2025-02-28</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">An in-depth review of next-generation energy sources and their global impact.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Biology & Medicine</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Energy Science</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Dr. Olivia Reed</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="article" data-year="2025">
-                    <img src="https://images.unsplash.com/photo-1546410531-bb6c12d8a436?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robotics" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizBlue transition-colors leading-snug article-title">The Ethics of Autonomous Robots</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Article</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2025-04-01</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">Examining the moral and legal challenges posed by self-governing machines.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Computer Science</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Robotics</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Dr. Hiroshi Sato</div>
-                    </div>
-                </a>
-                <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="literature" data-year="2025">
-                    <img src="https://images.unsplash.com/photo-1546741492-b430e704122d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Climate Change" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                    <div class="flex flex-col flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-1">
-                            <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizGreen transition-colors leading-snug article-title">Climate Change and Public Health</h2>
-                            <div class="flex flex-wrap gap-2 text-xs text-gray-500 md:ml-4 mt-2 md:mt-0">
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-file-alt text-revizBlue"></i>Literature Review</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-unlock text-revizGreen"></i>Open Access</span>
-                                <span class="flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded"><i class="fas fa-calendar-alt text-revizOrange"></i>2025-05-15</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-2 line-clamp-2 article-summary">A review of the interconnected issues between environmental shifts and human well-being.</p>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="inline-block px-2 py-0.5 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Biology & Medicine</span>
-                            <span class="inline-block px-2 py-0.5 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Environmental Science</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Authors: Isabella Rossi</div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- No results message -->
-            <div id="no-results" class="text-center text-gray-500 py-10" style="display: none;">
-                <p>No articles found matching your criteria. Please try different filters.</p>
+                <span class="text-xs text-gray-500">Published: {{date}}</span>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4 md:px-0">
-        <div class="container mx-auto">
-            <div class="flex flex-col lg:flex-row lg:justify-between items-center text-center lg:text-left">
-                <!-- Branding and Social Media -->
-                <div class="mb-8 lg:mb-0">
-                    <img src="/public/revisx._new.svg" alt="RevisX Logo" class="h-20 w-auto mb-4 mx-auto lg:mx-0">
-                    <p class="text-gray-400 text-sm max-w-sm mb-4">
-                        RevisX is a platform dedicated to fostering the dissemination of scientific knowledge through open-access publications.
+    <div class="container mx-auto px-4 py-12 max-w-7xl">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Table of Contents Sidebar -->
+            <aside class="hidden lg:block lg:w-1/4">
+                <div id="table-of-contents" class="toc-sidebar">
+                    <h3 class="font-heading font-bold text-lg mb-4 text-gray-900">Contents</h3>
+                    <!-- Dynamic ToC will be generated here by JavaScript -->
+                </div>
+            </aside>
+            <!-- Main Article Content -->
+            <div class="lg:w-3/4">
+                <article id="article-content" class="prose max-w-none prose-lg md:prose-xl prose-headings:font-heading prose-headings:font-bold prose-headings:text-gray-900 prose-blockquote:font-serif prose-blockquote:text-2xl prose-blockquote:italic prose-blockquote:border-l-4 prose-blockquote:border-revizBlue prose-blockquote:bg-revizBlue/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-custom">
+                    <!-- Abstract Section -->
+                    <div class="p-6 bg-white border border-gray-200 rounded-xl shadow-sm mb-8">
+                        <h2 id="abstract">Abstract</h2>
+                        <p>{{description}}</p>
+                    </div>
+                    
+                    <!-- Article Body Sections. These are placeholders. You can replace this with your actual article content. -->
+                    <h2 id="introduction">1. Introduction</h2>
+                    <p>This is the introductory section of the article. It provides background on the topic and states the purpose of the research. You can add images, blockquotes, lists, and other elements here. The custom CSS will ensure it's styled correctly.</p>
+
+                    <h2 id="methods">2. Methods</h2>
+                    <p>This section details the methodology used in the research. It is important to be thorough so that others can replicate your work. You can use ordered or unordered lists to detail steps or materials.</p>
+                    <p>For example:</p>
+                    <ul>
+                        <li>Step A: Collect data from sources.</li>
+                        <li>Step B: Analyze data using statistical software.</li>
+                        <li>Step C: Interpret the findings.</li>
+                    </ul>
+
+                    <h2 id="results">3. Results</h2>
+                    <p>Here you present the objective findings of your study. Figures and tables can be included to visualize your data. Remember to describe the results in the text and reference any visual aids you include.</p>
+
+                    <h2 id="discussion">4. Discussion</h2>
+                    <p>This section is for interpreting your results, discussing their implications, and relating them to existing literature. You can use blockquotes for impactful quotes from other sources or for emphasis.</p>
+                    <blockquote>
+                        "This study's findings suggest a significant correlation between X and Y, a result that challenges previous assumptions in the field."
+                    </blockquote>
+
+                    <h2 id="conclusion">5. Conclusion</h2>
+                    <p>A summary of your key findings and a final statement on the overall contribution of your research.</p>
+
+                    <h2 id="references">6. References</h2>
+                    <p>This is the bibliography. A list of sources cited in your article should be placed here, formatted according to your chosen style guide.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer from crispr-article.html -->
+    <footer class="bg-gray-50 py-12 border-t border-gray-200 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-4">RevisX</h3>
+                    <p class="text-gray-600 text-sm">
+                        Making cutting-edge science accessible for the next generation of researchers.
                     </p>
-                    <div class="flex justify-center lg:justify-start space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-500 hover:text-revizBlue transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-revizGreen transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-revizPurple transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-800 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
                     </div>
                 </div>
-
-                <!-- Footer Navigation -->
-                <div class="flex flex-wrap justify-center lg:justify-start gap-8 lg:gap-16">
-                    <div>
-                        <h4 class="font-bold text-gray-200 mb-4">Quick Links</h4>
-                        <ul class="text-sm space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Articles</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Divisions</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-200 mb-4">Resources</h4>
-                        <ul class="text-sm space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Submit Manuscript</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Editorial Board</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Author Guidelines</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-200 mb-4">Legal</h4>
-                        <ul class="text-sm space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a></li>
-                        </ul>
-                    </div>
+                <div>
+                    <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Divisions</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-revizBlue transition-colors text-sm">Medicine & Biology</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizGreen transition-colors text-sm">Physics & Computer Science</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizPurple transition-colors text-sm">All Research Areas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-revizBlue transition-colors text-sm">Articles</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizGreen transition-colors text-sm">Research Guides</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizPurple transition-colors text-sm">For Educators</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-800 transition-colors text-sm">For Students</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Organization</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-revizBlue transition-colors text-sm">About REVIZ</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizGreen transition-colors text-sm">Our Team</a></li>
+                        <li><a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-600 hover:text-revizPurple transition-colors text-sm">Submit Research</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-800 transition-colors text-sm">Contact Us</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
-                &copy; 2025 RevisX. All rights reserved.
+
+            <div class="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">
+                    © 2025 RevisX Science Journal. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-gray-800 text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-800 text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-800 text-sm">Cookies</a>
+                </div>
             </div>
         </div>
     </footer>
-
-
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('article-search');
-            const typeFilter = document.getElementById('type-filter');
-            const yearFilter = document.getElementById('year-filter');
-            const applyButton = document.getElementById('apply-filters');
-            const clearButton = document.getElementById('clear-filters');
-            const articlesContainer = document.getElementById('articles-container');
-            const articleCards = document.querySelectorAll('.article-card');
-            const noResultsMessage = document.getElementById('no-results');
+        // JavaScript for dynamic Table of Contents with iOS-style scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const articleContent = document.getElementById('article-content');
+            const tocContainer = document.getElementById('table-of-contents');
 
-            // Function to filter articles based on current filter values
-            const filterArticles = () => {
-                const query = searchInput.value.toLowerCase();
-                const selectedType = typeFilter.value;
-                const selectedYear = yearFilter.value;
-                let resultsFound = false;
+            // Find all h2 headings inside the article-content div
+            const headings = articleContent.querySelectorAll('h2[id]');
 
-                // Loop through each article card
-                for (const card of articleCards) {
-                    const title = card.querySelector('.article-title').textContent.toLowerCase();
-                    const summary = card.querySelector('.article-summary').textContent.toLowerCase();
-                    const cardType = card.getAttribute('data-type');
-                    const cardYear = card.getAttribute('data-year');
+            // Generate Table of Contents
+            const tocList = document.createElement('ul');
+            tocList.classList.add('space-y-2');
 
-                    const matchesQuery = title.includes(query) || summary.includes(query);
-                    const matchesType = selectedType === 'all' || cardType === selectedType;
-                    const matchesYear = selectedYear === 'all' || cardYear === selectedYear;
+            headings.forEach(heading => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `#${heading.id}`;
+                link.textContent = heading.textContent;
+                link.classList.add('block', 'py-1', 'px-3', 'rounded-md', 'text-gray-700', 'hover:bg-gray-100', 'hover:text-revizBlue', 'transition-colors', 'border-l-2', 'border-transparent', 'toc-link', 'font-medium');
 
-                    if (matchesQuery && matchesType && matchesYear) {
-                        card.style.display = 'flex'; // Show the card
-                        resultsFound = true;
-                    } else {
-                        card.style.display = 'none'; // Hide the card
-                    }
-                }
-
-                if (resultsFound || (query === '' && selectedType === 'all' && selectedYear === 'all')) {
-                    noResultsMessage.style.display = 'none';
-                } else {
-                    noResultsMessage.style.display = 'block';
-                }
-            };
-
-            const clearFilters = () => {
-                searchInput.value = '';
-                typeFilter.value = 'all';
-                yearFilter.value = 'all';
-                filterArticles(); // Apply the empty filters to show all articles
-            };
-
-            // Event listeners
-            applyButton.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent form submission
-                filterArticles();
-            });
-
-            clearButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                clearFilters();
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
             });
             
-            searchInput.addEventListener('input', filterArticles);
-            typeFilter.addEventListener('change', filterArticles);
-            yearFilter.addEventListener('change', filterArticles);
+            // Append the generated list to the TOC container
+            tocContainer.appendChild(tocList);
 
-            // Initial filter application
-            filterArticles();
+            // Scroll-spy functionality and handle clicks on ToC links
+            tocContainer.addEventListener('click', (event) => {
+                if (event.target.tagName === 'A' && event.target.closest('#table-of-contents')) {
+                    event.preventDefault();
+                    const targetId = event.target.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+
+            // Initialize and use a single IntersectionObserver for scroll spy
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        const tocLink = tocContainer.querySelector(`a[href="#${id}"]`);
+                        
+                        if (tocLink) {
+                            // Update active link
+                            tocContainer.querySelectorAll('.toc-link').forEach(link => {
+                                link.classList.remove('active');
+                            });
+                            tocLink.classList.add('active');
+                        }
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            });
+
+            // Observe headings
+            headings.forEach(heading => observer.observe(heading));
         });
     </script>
 </body>

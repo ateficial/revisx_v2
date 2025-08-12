@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevisX - Science Journal for Young Minds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/divisions.css">
+    <script>
+        // Tailwind configuration should remain here if using CDN for simplicity,
+        // or be moved to a separate Tailwind config file if building with PostCSS.
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        revizBlue: '#3B82F6',
+                        revizGreen: '#10B981',
+                        revizOrange: '#F59E0B',
+                        revizPurple: '#8B5CF6',
+                    },
+                    fontFamily: {
+                        sans: ['"Batangas"', 'sans-serif'],
+                        heading: ['"Batangas"', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .animated-gradient {
+            background: linear-gradient(90deg, #3B82F6, #10B981, #3B82F6);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 4s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body class="Batangas">
+    <nav class="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="REVISX_final.svg" alt="RevisX Logo" class="h-28 w-auto" style="max-width:260px;">
+            </a>
+
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-revizBlue transition-colors font-medium">Home</a>
+                <a href="articles.html" class="text-gray-600 hover:text-revizOrange transition-colors font-medium">Articles</a>
+                <a href="about.html" class="text-gray-600 hover:text-revizPurple transition-colors font-medium">About</a>
+                <a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-600 hover:text-gray-800 transition-colors font-medium">Submit</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center text-white overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('background.jpg');"></div>
+        <div class="absolute inset-0 bg-black/60"></div>
+        
+        <div class="relative z-10 text-center p-8 max-w-4xl mx-auto">
+            <div class="glass-effect rounded-xl p-10">
+                <h1 class="font-heading text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                    Science for the <span class="animated-gradient">Next Generation</span>
+                </h1>
+                <p class="text-xl text-gray-200 mb-10 max-w-3xl mx-auto">
+                    A premier, open-access journal for the next generation of scientists and engineers to disseminate their groundbreaking research.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="articles.html" class="bg-gradient-to-r from-revizBlue to-revizGreen text-white px-8 py-3 rounded-lg font-medium text-lg hover:opacity-90 transition-opacity shadow-lg">
+                        Explore Articles
+                    </a>
+                    <a href="submit_manuscript.html" class="bg-white/20 text-white px-8 py-3 rounded-lg font-medium text-lg hover:bg-white/30 transition-all shadow-md">
+                        Submit Manuscript
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Our <span class="text-revizBlue">Divisions</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    REVIZ organizes cutting-edge research into two main divisions for focused exploration.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto division-card-container">
+                <div class="division-card">
+                    <div class="w-16 h-16 mb-6 rounded-lg bg-revizGreen/10 flex items-center justify-center">
+                        <i class="fas fa-dna text-2xl text-revizGreen"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Biomedical Division</h3>
+                    <p class="text-gray-600 mb-6">
+                        Exploring life sciences from cellular mechanisms to medical breakthroughs that shape our health and future.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-revizGreen/10 text-revizGreen rounded-full text-sm font-medium">Genetics</span>
+                        <span class="px-3 py-1 bg-revizGreen/10 text-revizGreen rounded-full text-sm font-medium">Neuroscience</span>
+                        <span class="px-3 py-1 bg-revizGreen/10 text-revizGreen rounded-full text-sm font-medium">Medicine</span>
+                    </div>
+                    <a href="#" class="text-revizGreen font-medium hover:underline inline-flex items-center">
+                        Explore Division
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="division-card">
+                    <div class="w-16 h-16 mb-6 rounded-lg bg-revizBlue/10 flex items-center justify-center">
+                        <i class="fas fa-atom text-2xl text-revizBlue"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Computer Science Division</h3>
+                    <p class="text-gray-600 mb-6">
+                        From quantum mechanics to artificial intelligence, uncovering the fundamental principles of our digital and physical worlds.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-revizBlue/10 text-revizBlue rounded-full text-sm font-medium">Quantum Physics</span>
+                        <span class="px-3 py-1 bg-revizBlue/10 text-revizBlue rounded-full text-sm font-medium">AI</span>
+                        <span class="px-3 py-1 bg-revizBlue/10 text-revizBlue rounded-full text-sm font-medium">Robotics</span>
+                    </div>
+                    <a href="#" class="text-revizBlue font-medium hover:underline inline-flex items-center">
+                        Explore Division
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 highlight-bg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-800">
+                        Featured <span class="text-revizPurple">Articles</span>
+                    </h2>
+                    <p class="text-gray-600">Latest research from our divisions</p>
+                </div>
+                <a href="#" class="text-revizPurple hover:underline font-medium">View All →</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="article-card bg-white rounded-lg overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-r from-revizGreen/20 to-revizBlue/20 flex items-center justify-center">
+                        <i class="fas fa-microscope text-5xl text-revizGreen"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="px-3 py-1 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Medicine & Biology</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">CRISPR: Rewriting the Code of Life</h3>
+                        <p class="text-gray-600 text-sm mb-4">How gene editing technology is revolutionizing medicine and what it means for our future.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-revizGreen/20 mr-2 flex items-center justify-center">
+                                    <i class="fas fa-user text-revizGreen text-xs"></i>
+                                </div>
+                                <span class="text-xs text-gray-500">Dr. Sarah Chen</span>
+                            </div>
+                            <span class="text-xs text-gray-400">May 28, 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card bg-white rounded-lg overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-r from-revizBlue/20 to-revizPurple/20 flex items-center justify-center">
+                        <i class="fas fa-robot text-5xl text-revizBlue"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="px-3 py-1 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-medium">Physics & CS</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">The Ethics of Artificial Intelligence</h3>
+                        <p class="text-gray-600 text-sm mb-4">Exploring the moral implications of AI development and how we can build responsible systems.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-revizBlue/20 mr-2 flex items-center justify-center">
+                                    <i class="fas fa-user text-revizBlue text-xs"></i>
+                                </div>
+                                <span class="text-xs text-gray-500">Prof. James Wilson</span>
+                            </div>
+                            <span class="text-xs text-gray-400">June 5, 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card bg-white rounded-lg overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-r from-revizPurple/20 to-revizOrange/20 flex items-center justify-center">
+                        <i class="fas fa-brain text-5xl text-revizPurple"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="px-3 py-1 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-medium">Medicine & Biology</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Neuroscience of Learning</h3>
+                        <p class="text-gray-600 text-sm mb-4">How understanding brain plasticity can help us develop better learning techniques.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-revizPurple/20 mr-2 flex items-center justify-center">
+                                    <i class="fas fa-user text-revizPurple text-xs"></i>
+                                </div>
+                                <span class="text-xs text-gray-500">Dr. Maria Rodriguez</span>
+                            </div>
+                            <span class="text-xs text-gray-400">June 15, 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="bg-gradient-to-r from-revizBlue/5 to-revizGreen/5 rounded-xl p-8 md:p-10 border border-gray-100">
+                <div class="text-center mb-6">
+                    <h2 class="font-heading text-3xl font-bold text-gray-800 mb-3">
+                        Stay <span class="text-revizBlue">Updated</span>
+                    </h2>
+                    <p class="text-gray-600">
+                        Get the latest articles and research updates from REVIZ delivered to your inbox.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-revizBlue focus:border-transparent">
+                    <button class="bg-gradient-to-r from-revizBlue to-revizGreen text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap">
+                        Subscribe
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500 text-center mt-4">
+                    We'll never share your email. Unsubscribe anytime.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-50 py-12 border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-4">RevisX</h3>
+                    <p class="text-gray-600 text-sm">
+                        Making cutting-edge science accessible for the next generation of researchers.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-500 hover:text-revizBlue transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-revizGreen transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-revizPurple transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-800 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Divisions</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-revizBlue transition-colors text-sm">Medicine & Biology</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizGreen transition-colors text-sm">Physics & Computer Science</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizPurple transition-colors text-sm">All Research Areas</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-revizBlue transition-colors text-sm">Articles</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizGreen transition-colors text-sm">Research Guides</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizPurple transition-colors text-sm">For Educators</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-800 transition-colors text-sm">For Students</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Organization</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-revizBlue transition-colors text-sm">About REVIZ</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-revizGreen transition-colors text-sm">Our Team</a></li>
+                        <li><a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-600 hover:text-revizPurple transition-colors text-sm">Submit Research</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-800 transition-colors text-sm">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">
+                    © 2025 RevisX Science Journal. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-gray-800 text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-800 text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-800 text-sm">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/divisions.js"></script>
+</body>
+</html>
