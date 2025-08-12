@@ -65,6 +65,18 @@
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
         }
 
+        .division-tab-vertical .relative.z-10 .w-20.h-20 i {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .division-tab-vertical:hover .relative.z-10 .w-20.h-20 i {
+            transform: rotateY(180deg);
+        }
+
+        .division-tab-vertical .relative.z-10 .w-20.h-20 i:not(:hover) {
+            transform: rotateY(360deg);
+        }
+
         .explore-btn {
             background: linear-gradient(90deg, #3B82F6, #10B981);
             background-size: 200% 200%;
@@ -129,33 +141,29 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 gap-8 md:gap-12 max-w-6xl mx-auto">
-                <div class="division-tab-vertical relative rounded-2xl overflow-hidden p-8 md:p-12 flex flex-col md:flex-row items-center text-center md:text-left" style="background-image: url('https://images.unsplash.com/photo-1630818365778-d8b80df27d4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); min-height: 300px;">
+                        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-6xl mx-auto">
+                <div class="division-tab-vertical relative rounded-2xl overflow-hidden p-8 flex flex-col items-center text-center text-white" style="background-image: url('https://images.unsplash.com/photo-1717501805972-6f44905bc53c?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); min-height: 280px;">
                     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-                    <div class="relative z-10 flex flex-col md:flex-row items-center w-full text-white">
-                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-lg flex items-center justify-center mb-6 md:mb-0 md:mr-8 border-2 border-white/20 flex-shrink-0">
-                            <i class="fas fa-dna text-3xl md:text-4xl"></i>
+                    <div class="relative z-10 flex flex-col items-center w-full">
+                        <div class="w-20 h-20 rounded-lg bg-white/10 backdrop-blur-lg flex items-center justify-center mb-6 border-2 border-white/20 flex-shrink-0">
+                            <i class="fas fa-dna text-3xl"></i>
                         </div>
-                        <div class="w-full">
-                            <h3 class="text-2xl md:text-3xl font-bold mb-2">Biomedical Division</h3>
-                            <p class="text-base md:text-lg max-w-md mx-auto md:mx-0">Advancing human health through pioneering research in genetics, neuroscience, and medicine.</p>
-                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Biomedical Division</h3>
+                        <p class="text-base max-w-md mx-auto">Advancing human health through pioneering research in genetics, neuroscience, and medicine.</p>
                     </div>
                 </div>
 
-                <div class="division-tab-vertical relative rounded-2xl overflow-hidden p-8 md:p-12 flex flex-col md:flex-row items-center text-center md:text-left" style="background-image: url('https://images.unsplash.com/photo-1692607431225-5f4564c8f132?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); min-height: 300px;">
-                    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-                    <div class="relative z-10 flex flex-col md:flex-row items-center w-full text-white">
-                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-lg flex items-center justify-center mb-6 md:mb-0 md:mr-8 border-2 border-white/20 flex-shrink-0">
-                            <i class="fas fa-atom text-3xl md:text-4xl"></i>
-                        </div>
-                        <div class="w-full">
-                            <h3 class="text-2xl md:text-3xl font-bold mb-2">Computer Science Division</h3>
-                            <p class="text-base md:text-lg max-w-md mx-auto md:mx-0">Driving innovation in AI, quantum computing, and robotics to shape the future of technology.</p>
+                <div class="division-tab-vertical relative rounded-2xl overflow-hidden p-8 flex flex-col items-center text-center text-white" style="background-image: url('https://images.unsplash.com/photo-1644325349124-d1756b79dd42?q=80&w=1475&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); min-height: 280px;">
+                        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+                        <div class="relative z-10 flex flex-col items-center w-full">
+                            <div class="w-20 h-20 rounded-lg bg-white/10 backdrop-blur-lg flex items-center justify-center mb-6 border-2 border-white/20 flex-shrink-0">
+                                <i class="fas fa-atom text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Computer Science Division</h3>
+                            <p class="text-base max-w-md mx-auto">Driving innovation in AI, quantum computing, and robotics to shape the future of technology.</p>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </section>
 

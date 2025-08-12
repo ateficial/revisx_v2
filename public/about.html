@@ -74,6 +74,18 @@
             transform: scale(1.02);
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
         }
+
+        .division-tab-vertical .relative.z-10 .w-20.h-20 i {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .division-tab-vertical:hover .relative.z-10 .w-20.h-20 i {
+            transform: rotateY(180deg);
+        }
+
+        .division-tab-vertical .relative.z-10 .w-20.h-20 i:not(:hover) {
+            transform: rotateY(360deg);
+        }
     </style>
 </head>
 <body class="Batangas bg-gray-50">
@@ -99,7 +111,7 @@
         </div>
     </nav>
 
-    <section class="relative h-[80vh] flex items-center text-white overflow-hidden">
+    <section class="relative h-[60vh] md:h-[85vh] flex items-center text-white overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1692607431253-8225c0e89f7d?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
         <div class="absolute inset-0 bg-black/60"></div>
         
@@ -147,7 +159,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-6xl mx-auto">
-                    <div class="division-tab-vertical relative rounded-2xl overflow-hidden p-8 flex flex-col items-center text-center text-white" style="background-image: url('https://images.unsplash.com/photo-1630818365778-d8b80df27d4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); min-height: 280px;">
+                    <div class="division-tab-vertical relative rounded-2xl overflow-hidden p-8 flex flex-col items-center text-center text-white" style="background-image: url('https://images.unsplash.com/photo-1717501805972-6f44905bc53c?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); min-height: 280px;">
                         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
                         <div class="relative z-10 flex flex-col items-center w-full">
                             <div class="w-20 h-20 rounded-lg bg-white/10 backdrop-blur-lg flex items-center justify-center mb-6 border-2 border-white/20 flex-shrink-0">
@@ -158,7 +170,7 @@
                         </div>
                     </div>
 
-                    <div class="division-tab-vertical relative rounded-2xl overflow-hidden p-8 flex flex-col items-center text-center text-white" style="background-image: url('https://images.unsplash.com/photo-1692607431225-5f4564c8f132?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); min-height: 280px;">
+                    <div class="division-tab-vertical relative rounded-2xl overflow-hidden p-8 flex flex-col items-center text-center text-white" style="background-image: url('https://images.unsplash.com/photo-1644325349124-d1756b79dd42?q=80&w=1475&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); min-height: 280px;">
                         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
                         <div class="relative z-10 flex flex-col items-center w-full">
                             <div class="w-20 h-20 rounded-lg bg-white/10 backdrop-blur-lg flex items-center justify-center mb-6 border-2 border-white/20 flex-shrink-0">

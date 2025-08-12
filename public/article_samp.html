@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RevisX - {{title}}</title>
+    <title>RevisX - Science Journal for Young Minds</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom Tailwind config for consistent styling */
@@ -111,6 +112,130 @@
             font-style: italic;
             color: #4b5563; /* gray-700 */
         }
+        body.chatbot-active nav .container {
+            margin-right: 390px; /* Match the content margin */
+            transition: margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-white border-b border-gray-200 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="REVISX_final.svg" alt="RevisX Logo" class="h-20 w-auto">
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-revizBlue font-medium">Home</a>
+                <a href="divisions.html" class="text-gray-600 hover:text-revizGreen font-medium">Divisions</a>
+                <a href="articles.html" class="text-gray-600 hover:text-revizOrange font-medium">Articles</a>
+                <a href="about.html" class="text-gray-600 hover:text-revizPurple font-medium">About</a>
+                <a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-600 hover:text-gray-800 font-medium" target="_blank" rel="noopener">Submit</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-revizGreen/5 to-revizBlue/5 py-12 text-left">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="mb-4 flex items-center gap-3">
+                <span class="px-3 py-1 bg-revizGreen/10 text-revizGreen rounded-full text-xs font-semibold tracking-wide">Medicine &amp; Biology</span>
+                <span class="px-3 py-1 bg-revizBlue/10 text-revizBlue rounded-full text-xs font-semibold tracking-wide">Genetics</span>
+            </div>
+            <h1 id="article-main-title" class="font-heading text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight tracking-tight">CRISPR: Rewriting the Code of Life</h1>
+            <p class="text-lg text-gray-700 mb-6 max-w-2xl">How gene editing technology is revolutionizing medicine and what it means for our future.</p>
+            <div class="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center border border-gray-200">
+                        <i class="fas fa-user text-xl text-gray-600"></i>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-gray-900">Dr. Sarah Chen</span>
+                        <span class="block text-xs text-gray-500">Stanford University School of Medicine</span>
+                    </div>
+                </div>
+                <span class="text-xs text-gray-500">Published: May 28, 2023</span>
+                <span class="text-xs text-gray-500">Updated: June 10, 2023</span>
+            </div>
+            <figure class="bg-gray-100 rounded-xl overflow-hidden mb-8 shadow-lg max-w-5xl mx-auto">
+                <img src="https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="CRISPR gene editing illustration" class="w-full h-[300px] md:h-[400px] object-cover object-center">
+                <figcaption class="text-base text-gray-600 py-3 text-center italic">Illustration of CRISPR-Cas9 gene editing system (Credit: Science Photo Library)</figcaption>
+            </figure>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Table of Contents Sidebar -->
+            <aside class="hidden lg:block lg:w-1/4">
+                <div id="table-of-contents" class="toc-sidebar">
+                    <h3 class="font-heading font-bold text-lg mb-4 text-gray-900">Contents</h3>
+                    <!-- Dynamic ToC will be generated here by JavaScript -->
+                </div>
+            </aside>
+            <!-- Main Article Content -->
+            <div class="lg:w-3/4">
+                <article id="crispr-article-content" class="prose prose-lg md:prose-xl prose-headings:font-heading prose-headings:font-bold prose-headings:text-gray-900 prose-blockquote:font-serif prose-blockquote:text-2xl prose-blockquote:italic prose-blockquote:border-l-4 prose-blockquote:border-revizBlue prose-blockquote:bg-revizBlue/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-custom">
+
+                    <h2 id="abstract">Abstract</h2>
+                    <p>The discovery of CRISPR-Cas9 has ushered in a new era of genetic engineering, offering unprecedented precision in editing DNA sequences. This revolutionary technology holds promise for treating genetic disorders, improving crops, and even potentially eliminating diseases. This article provides a concise overview of CRISPR's mechanism, its diverse therapeutic applications, and the critical ethical considerations surrounding its use.</p>
+
+                    <p class="mt-8 text-sm text-gray-600"><strong>Keywords:</strong> CRISPR-Cas9, Gene Editing, Genetic Disorders, Biotechnology, Ethics, DNA Repair</p>
+
+                    <h2 id="introduction">Introduction</h2>
+                    <p>The advent of CRISPR-Cas9 technology has revolutionized the field of genetic engineering, offering unprecedented precision and efficiency in modifying DNA sequences. This groundbreaking system, originally discovered as a bacterial defense mechanism against viruses, has been repurposed to enable targeted alterations to the genomes of various organisms, including humans. Its simplicity and versatility have made it an indispensable tool in biological research, paving the way for novel therapeutic strategies and advancements in agriculture.</p>
+                    <p>This article delves into the fundamental principles governing the CRISPR-Cas9 system, exploring its molecular components and the intricate mechanisms by which it facilitates gene editing. We will examine its diverse applications in addressing genetic disorders, enhancing crop resilience, and developing innovative biotechnological solutions. Furthermore, we will critically assess the ethical implications associated with its widespread use, particularly concerning germline editing and equitable access to this transformative technology. Understanding these facets is crucial for harnessing the full potential of CRISPR while navigating its societal challenges.</p>
+                    <figure class="float-right w-1/2 ml-8 mb-4">
+                        <img src="https://images.unsplash.com/photo-1631048005738-ebeefaf19c7d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D" alt="DNA strand" class="w-full h-auto rounded-lg">
+                        <figcaption class="text-xs text-gray-500">DNA double helix structure (Credit: Getty Images)</figcaption>
+                    </figure>
+                    <p>The CRISPR system works by using a small piece of RNA sequence (guide RNA) to direct the Cas9 enzyme to a specific location in the genome. Once there, Cas9 cuts both strands of the DNA at that point. The cell's natural repair mechanisms then kick in to repair the break, during which scientists can introduce desired changes to the DNA sequence.</p>
+                    <blockquote> "CRISPR is to genetic engineering what the PCR machine was to DNA replication—a complete game changer that makes the previously impossible suddenly routine." — Dr. Jennifer Doudna, Nobel Laureate </blockquote>
+
+                    <h2 id="mechanism">Mechanism of Action</h2>
+                    <p>The CRISPR-Cas9 system consists of two key components: **Guide RNA (gRNA)**, which directs the Cas9 enzyme to a specific genomic target, and **Cas9 Nuclease**, an enzyme that creates double-strand breaks in DNA. The specificity is derived from the gRNA, which recognizes a 20-nucleotide sequence, followed by a protospacer adjacent motif (PAM).</p>
+                    <p>After Cas9 induces a double-strand break, the cell primarily uses two repair mechanisms:</p>
+                    <ul>
+                        <li><strong>Non-homologous end joining (NHEJ):</strong> An error-prone process leading to insertions or deletions (indels) that can disrupt gene function.</li>
+                        <li><strong>Homology-directed repair (HDR):</strong> A precise mechanism utilizing a donor DNA template to introduce specific changes at the break site.</li>
+                    </ul>
+
+                    <h2 id="applications">Therapeutic Applications</h2>
+                    <p>CRISPR technology offers immense potential for treating genetic disorders and advancing medical therapies:</p>
+                    <h3 id="sickle-cell">Sickle Cell Disease</h3>
+                    <p>Clinical trials show CRISPR's ability to edit hematopoietic stem cells, leading to fetal hemoglobin production and potential cures for sickle cell disease.</p>
+                    <h3 id="cancer">Cancer Immunotherapy</h3>
+                    <p>Researchers are engineering T cells with CRISPR to enhance their cancer-fighting capabilities, developing personalized immunotherapies.</p>
+                    <h3 id="eye">Inherited Eye Diseases</h3>
+                    <p>Direct ocular injection of CRISPR components has demonstrated promise in treating inherited retinal diseases like Leber congenital amaurosis.</p>
+
+                    <h2 id="ethics">Ethical Considerations</h2>
+                    <p>Despite its promise, CRISPR raises significant ethical questions that require careful consideration:</p>
+                    <h3 id="germline">Germline Editing</h3>
+                    <p>The potential for heritable changes to the human genome raises concerns about unintended consequences and the concept of "designer babies."</p>
+                    <h3 id="equity">Equity and Access</h3>
+                    <p>Ensuring equitable access to these powerful technologies is crucial to prevent exacerbating existing health disparities.</p>
+                    <h3 id="off-target">Off-Target Effects</h3>
+                    <p>While highly precise, CRISPR can sometimes make unintended edits at other genomic locations, leading to unforeseen consequences.</p>
+
+                    <h2 id="references">References</h2>
+                    <p>1. Doudna, J. A., & Charpentier, E. (2014). The new frontier of genome engineering with CRISPR-Cas9. *Science*, 346(6213), 1258096.</p>
+                    <p>2. Cong, L., Ran, F. A., Cox, D., Lin, S., Barretto, R., Habib, N., ... & Zhang, F. (2013). Multiplex genome engineering using CRISPR/Cas systems. *Science*, 339(6121), 819-823.</p>
+                    <p>3. Jinek, M., Chylinski, K., Fonfara, I., Hauer, A., Doudna, J. A., & Charpentier, E. (2012). A programmable dual RNA-guided DNA endonuclease in adaptive bacterial immunity. *Science*, 337(6096), 816-821.</p>
+                    <p>4. Ledford, H. (2015). CRISPR: gene editing is just the beginning. *Nature*, 522(7554), 20-24.</p>
+                    <p>5. National Academies of Sciences, Engineering, and Medicine. (2017). *Human Genome Editing: Science, Ethics, and Governance*. The National Academies Press.</p>
+
+                    <div class="mt-8 text-center">
+                        <a href="#" class="inline-block bg-gradient-to-r from-revizBlue to-revizGreen text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity">
+                            <i class="fas fa-download mr-2"></i> Download Full Article (PDF)
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <style>
         .toc-sidebar {
             position: sticky;
             top: 20px;
@@ -119,6 +244,9 @@
             border: 1px solid #e5e7eb;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .toc-content {
+            width: 100%;
         }
         .toc-content h3 {
             margin-bottom: 15px;
@@ -147,108 +275,14 @@
             border-left-color: var(--reviz-blue);
             background: #f3f4f6;
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             .toc-sidebar {
                 display: none;
             }
         }
     </style>
-</head>
-<body>
-    <!-- Navbar from crispr-article.html -->
-    <nav class="bg-white border-b border-gray-200 shadow-sm">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <img src="REVISX_final.svg" alt="RevisX Logo" class="h-10 w-auto rounded-full">
-            </a>
-            <div class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-gray-600 hover:text-revizBlue font-medium">Home</a>
-                <a href="divisions.html" class="text-gray-600 hover:text-revizGreen font-medium">Divisions</a>
-                <a href="articles.html" class="text-gray-600 hover:text-revizOrange font-medium">Articles</a>
-                <a href="about.html" class="text-gray-600 hover:text-revizPurple font-medium">About</a>
-                <a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-600 hover:text-gray-800 font-medium">Submit</a>
-            </div>
-            <div class="md:hidden">
-                <button class="text-gray-600 hover:text-revizBlue">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Header Section -->
-    <header class="bg-gradient-to-r from-revizGreen/5 to-revizBlue/5 py-12">
-        <div class="container mx-auto px-4 max-w-5xl">
-            <!-- Article Categories -->
-            <div class="mb-4 flex flex-wrap items-center gap-3">
-                <!-- Use dynamic placeholders for categories -->
-                {{subject_tags}}
-            </div>
-            <h1 id="article-main-title" class="font-heading text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight tracking-tight">{{title}}</h1>
-            <p class="text-lg text-gray-700 mb-6 max-w-2xl">{{description}}</p>
-            <div class="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
-                <div class="flex items-center gap-3">
-                    <img src="https://placehold.co/48x48/64748b/fff?text=A" alt="{{authors}}" class="w-12 h-12 rounded-full object-cover border border-gray-200">
-                    <div>
-                        <span class="font-semibold text-gray-900">{{authors}}</span>
-                    </div>
-                </div>
-                <span class="text-xs text-gray-500">Published: {{date}}</span>
-            </div>
-        </div>
-    </header>
-
-    <div class="container mx-auto px-4 py-12 max-w-7xl">
-        <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Table of Contents Sidebar -->
-            <aside class="hidden lg:block lg:w-1/4">
-                <div id="table-of-contents" class="toc-sidebar">
-                    <h3 class="font-heading font-bold text-lg mb-4 text-gray-900">Contents</h3>
-                    <!-- Dynamic ToC will be generated here by JavaScript -->
-                </div>
-            </aside>
-            <!-- Main Article Content -->
-            <div class="lg:w-3/4">
-                <article id="article-content" class="prose max-w-none prose-lg md:prose-xl prose-headings:font-heading prose-headings:font-bold prose-headings:text-gray-900 prose-blockquote:font-serif prose-blockquote:text-2xl prose-blockquote:italic prose-blockquote:border-l-4 prose-blockquote:border-revizBlue prose-blockquote:bg-revizBlue/5 prose-blockquote:px-6 prose-blockquote:py-4 prose-custom">
-                    <!-- Abstract Section -->
-                    <div class="p-6 bg-white border border-gray-200 rounded-xl shadow-sm mb-8">
-                        <h2 id="abstract">Abstract</h2>
-                        <p>{{description}}</p>
-                    </div>
-                    
-                    <!-- Article Body Sections. These are placeholders. You can replace this with your actual article content. -->
-                    <h2 id="introduction">1. Introduction</h2>
-                    <p>This is the introductory section of the article. It provides background on the topic and states the purpose of the research. You can add images, blockquotes, lists, and other elements here. The custom CSS will ensure it's styled correctly.</p>
-
-                    <h2 id="methods">2. Methods</h2>
-                    <p>This section details the methodology used in the research. It is important to be thorough so that others can replicate your work. You can use ordered or unordered lists to detail steps or materials.</p>
-                    <p>For example:</p>
-                    <ul>
-                        <li>Step A: Collect data from sources.</li>
-                        <li>Step B: Analyze data using statistical software.</li>
-                        <li>Step C: Interpret the findings.</li>
-                    </ul>
-
-                    <h2 id="results">3. Results</h2>
-                    <p>Here you present the objective findings of your study. Figures and tables can be included to visualize your data. Remember to describe the results in the text and reference any visual aids you include.</p>
-
-                    <h2 id="discussion">4. Discussion</h2>
-                    <p>This section is for interpreting your results, discussing their implications, and relating them to existing literature. You can use blockquotes for impactful quotes from other sources or for emphasis.</p>
-                    <blockquote>
-                        "This study's findings suggest a significant correlation between X and Y, a result that challenges previous assumptions in the field."
-                    </blockquote>
-
-                    <h2 id="conclusion">5. Conclusion</h2>
-                    <p>A summary of your key findings and a final statement on the overall contribution of your research.</p>
-
-                    <h2 id="references">6. References</h2>
-                    <p>This is the bibliography. A list of sources cited in your article should be placed here, formatted according to your chosen style guide.</p>
-                </article>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer from crispr-article.html -->
+    <!-- Footer (from index.html) -->
     <footer class="bg-gray-50 py-12 border-t border-gray-200 relative z-10">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -272,6 +306,7 @@
                         </a>
                     </div>
                 </div>
+
                 <div>
                     <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Divisions</h4>
                     <ul class="space-y-2">
@@ -280,6 +315,7 @@
                         <li><a href="#" class="text-gray-600 hover:text-revizPurple transition-colors text-sm">All Research Areas</a></li>
                     </ul>
                 </div>
+
                 <div>
                     <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Resources</h4>
                     <ul class="space-y-2">
@@ -289,6 +325,7 @@
                         <li><a href="#" class="text-gray-600 hover:text-gray-800 transition-colors text-sm">For Students</a></li>
                     </ul>
                 </div>
+
                 <div>
                     <h4 class="text-gray-800 font-bold text-sm uppercase mb-4">Organization</h4>
                     <ul class="space-y-2">
@@ -312,15 +349,34 @@
             </div>
         </div>
     </footer>
-    
+
     <script>
+        // Custom Tailwind configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        revizBlue: '#3B82F6',
+                        revizGreen: '#10B981',
+                        revizOrange: '#F97316',
+                        revizPurple: '#8B5CF6',
+                    },
+                },
+            },
+        };
+
         // JavaScript for dynamic Table of Contents with iOS-style scroll
         document.addEventListener('DOMContentLoaded', () => {
-            const articleContent = document.getElementById('article-content');
+            const articleContent = document.getElementById('crispr-article-content');
             const tocContainer = document.getElementById('table-of-contents');
-
-            // Find all h2 headings inside the article-content div
-            const headings = articleContent.querySelectorAll('h2[id]');
+            
+            // Get all H2 headings between Abstract and References
+            const allHeadings = articleContent.querySelectorAll('h2');
+            const headings = Array.from(allHeadings).filter(heading => {
+                const id = heading.id;
+                return id === 'abstract' || id === 'introduction' || id === 'mechanism' || 
+                       id === 'applications' || id === 'ethics' || id === 'references';
+            });
 
             // Generate Table of Contents
             const tocList = document.createElement('ul');
@@ -336,8 +392,6 @@
                 listItem.appendChild(link);
                 tocList.appendChild(listItem);
             });
-            
-            // Append the generated list to the TOC container
             tocContainer.appendChild(tocList);
 
             // Scroll-spy functionality and handle clicks on ToC links
@@ -381,5 +435,6 @@
             headings.forEach(heading => observer.observe(heading));
         });
     </script>
+    
 </body>
 </html>
