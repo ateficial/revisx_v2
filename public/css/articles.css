@@ -132,3 +132,53 @@ body {
     border-radius: 5px;
     text-decoration: none;
 }
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .flex-col.lg\:flex-row {
+        flex-direction: column;
+    }
+
+    .lg\:w-3\/4, .lg\:w-1\/4 {
+        width: 100%;
+    }
+
+    .prose-custom h2 {
+        font-size: 2rem; /* Slightly smaller for mobile */
+    }
+
+    .prose-custom h3 {
+        font-size: 1.5rem; /* Slightly smaller for mobile */
+    }
+
+    .prose-custom p, .prose-custom ol, .prose-custom ul {
+        font-size: 1rem; /* Smaller font for better mobile reading */
+    }
+
+    .prose-custom blockquote {
+        font-size: 1.25rem; /* Smaller blockquote */
+        padding: 1rem;
+    }
+
+    #dynamic-scroll-bar .container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #dynamic-article-title {
+        margin-bottom: 0;
+    }
+
+    #dynamic-scroll-bar a {
+        align-self: auto;
+    }
+
+    .download-btn-mobile .download-text {
+        display: none;
+    }
+
+    .download-btn-mobile i {
+        margin-right: 0;
+    }
+}
