@@ -98,3 +98,37 @@ body {
 .article-card:hover h2 {
     opacity: 0.8;
 }
+
+.navbar.fixed-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.dynamic-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 999;
+    display: none; /* Initially hidden */
+}
+
+#article-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#download-btn {
+    background-color: #3B82F6;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+}
