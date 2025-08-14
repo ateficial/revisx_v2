@@ -50,6 +50,16 @@
             .relative.h-\[60vh\] {
                 height: 80vh;
             }
+            #mobile-menu {
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            #mobile-menu.open {
+                transform: translateX(0);
+            }
+            body.menu-open {
+                overflow: hidden;
+            }
         }
     </style>
     <script>
@@ -93,11 +103,14 @@
                 </button>
             </div>
         </div>
-        <div class="hidden md:hidden" id="mobile-menu">
-            <a href="index.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
-            <a href="articles.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Articles</a>
-            <a href="about.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a>
-            <a href="submit_manuscript.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Submit</a>
+        <div class="hidden md:hidden" id="mobile-menu-container">
+            <div class="fixed inset-0 bg-black bg-opacity-50 z-40" id="mobile-menu-overlay"></div>
+            <div class="fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg" id="mobile-menu">
+                <a href="index.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
+                <a href="articles.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Articles</a>
+                <a href="about.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a>
+                <a href="submit_manuscript.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Submit</a>
+            </div>
         </div>
     </nav>
 
@@ -472,10 +485,20 @@
     </script>
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuContainer = document.getElementById('mobile-menu-container');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenuContainer.classList.toggle('hidden');
+            mobileMenu.classList.toggle('open');
+            document.body.classList.toggle('menu-open');
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenuContainer.classList.toggle('hidden');
+            mobileMenu.classList.toggle('open');
+            document.body.classList.toggle('menu-open');
         });
     </script>
 </body>

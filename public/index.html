@@ -97,6 +97,16 @@
             .hero-section-text p {
                 font-size: 1.125rem; /* Increase font size for mobile */
             }
+            #mobile-menu {
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            #mobile-menu.open {
+                transform: translateX(0);
+            }
+            body.menu-open {
+                overflow: hidden;
+            }
         }
     </style>
 </head>
@@ -121,11 +131,14 @@
                 </button>
             </div>
         </div>
-        <div class="hidden md:hidden" id="mobile-menu">
-            <a href="index.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
-            <a href="articles.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Articles</a>
-            <a href="about.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a>
-            <a href="submit_manuscript.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Submit</a>
+        <div class="hidden md:hidden" id="mobile-menu-container">
+            <div class="fixed inset-0 bg-black bg-opacity-50 z-40" id="mobile-menu-overlay"></div>
+            <div class="fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg" id="mobile-menu">
+                <a href="index.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
+                <a href="articles.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Articles</a>
+                <a href="about.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a>
+                <a href="submit_manuscript.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Submit</a>
+            </div>
         </div>
     </nav>
 
@@ -135,7 +148,7 @@
         
         <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="max-w-full md:max-w-3xl text-left hero-section-text">
-                <h1 class="font-heading text-4xl md:text-6xl font-extrabold leading-tight text-white">
+                <h1 class="font-heading text-5xl md:text-7xl font-extrabold leading-tight text-white">
                     Science for the <span class="animated-gradient">Next Generation</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-200 mb-8 mt-4">
@@ -277,10 +290,20 @@
     <script src="js/script.js"></script>
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuContainer = document.getElementById('mobile-menu-container');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenuContainer.classList.toggle('hidden');
+            mobileMenu.classList.toggle('open');
+            document.body.classList.toggle('menu-open');
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenuContainer.classList.toggle('hidden');
+            mobileMenu.classList.toggle('open');
+            document.body.classList.toggle('menu-open');
         });
     </script>
 </body>
