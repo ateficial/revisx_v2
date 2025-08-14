@@ -116,6 +116,19 @@
             margin-right: 390px; /* Match the content margin */
             transition: margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        @media (max-width: 767px) {
+            .logo {
+                max-width: 150px !important;
+            }
+            #dynamic-scroll-bar {
+                display: none !important;
+            }
+        }
+        @media (min-width: 768px) {
+            #mobile-scroll-bar {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -123,7 +136,7 @@
         <div class="container mx-auto px-4 py-1 flex justify-between items-center">
             <div class="flex-1">
                 <a href="index.html" class="flex items-center">
-                    <img src="REVISX_final.svg" alt="RevisX Logo" class="h-20 w-auto logo" style="max-width:200px;">
+                    <img src="REVISX_final.svg" alt="RevisX Logo" class="h-20 w-auto logo">
                 </a>
             </div>
 
@@ -153,6 +166,16 @@
             <h2 id="dynamic-article-title" class="text-lg font-semibold text-gray-800 truncate">CRISPR: Rewriting the Code of Life</h2>
             <a href="#" class="inline-block bg-gradient-to-r from-revizBlue to-revizGreen text-white px-4 py-2 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity download-btn-mobile">
                 <i class="fas fa-download mr-2"></i><span class="download-text"> Download</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Scroll Bar -->
+    <div id="mobile-scroll-bar" class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm z-40 py-2" style="display: none;">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h2 id="mobile-article-title" class="text-sm font-semibold text-gray-800 truncate">CRISPR: Rewriting the Code of Life</h2>
+            <a href="#" class="inline-block bg-gradient-to-r from-revizBlue to-revizGreen text-white px-3 py-1 rounded-lg font-medium text-xs hover:opacity-90 transition-opacity download-btn-mobile">
+                <i class="fas fa-download mr-1"></i><span class="download-text">Download</span>
             </a>
         </div>
     </div>
@@ -312,7 +335,7 @@
                         <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm">Home</a></li>
                         <li><a href="articles.html" class="text-gray-400 hover:text-white transition-colors text-sm">Articles</a></li>
                         <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors text-sm">About</a></li>
-                        <li><a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-400 hover:text-white transition-colors text-sm">Submit</a></li>
+                        <li><a href="submit_manuscript.html" class="text-gray-400 hover:text-white transition-colors text-sm">Submit</a></li>
                     </ul>
                 </div>
                 <div>
@@ -418,16 +441,34 @@
             const navbar = document.querySelector('nav');
             const articleTitle = document.getElementById('article-title');
             const dynamicBar = document.getElementById('dynamic-scroll-bar');
+            const mobileBar = document.getElementById('mobile-scroll-bar');
 
-            if (window.scrollY > articleTitle.offsetTop) {
-                dynamicBar.style.display = 'flex';
-                navbar.style.display = 'none';
-            } else {
-                dynamicBar.style.display = 'none';
-                navbar.style.display = 'flex';
+            if (window.innerWidth <= 767) { // Mobile
+                if (window.scrollY > articleTitle.offsetTop) {
+                    mobileBar.style.display = 'flex';
+                    navbar.style.display = 'none';
+                } else {
+                    mobileBar.style.display = 'none';
+                    navbar.style.display = 'block';
+                }
+            } else { // Desktop
+                if (window.scrollY > articleTitle.offsetTop) {
+                    dynamicBar.style.display = 'flex';
+                    navbar.style.display = 'none';
+                } else {
+                    dynamicBar.style.display = 'none';
+                    navbar.style.display = 'block';
+                }
             }
         });
     </script>
-    
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

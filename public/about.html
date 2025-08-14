@@ -99,21 +99,27 @@
         <div class="container mx-auto px-4 py-1 flex justify-between items-center">
             <div class="flex-1">
                 <a href="index.html" class="flex items-center">
-                    <img src="REVISX_final.svg" alt="RevisX Logo" class="h-20 w-auto logo" style="max-width:200px;">
+                    <img src="REVISX_final.svg" alt="RevisX Logo" class="h-20 w-auto logo">
                 </a>
             </div>
 
-            <div class="hidden md:flex space-x-8 justify-center">
+            <div class="hidden md:flex space-x-8 justify-center" id="desktop-menu">
                 <a href="index.html" class="text-gray-600 hover:text-revizBlue transition-colors font-medium">Home</a>
                 <a href="articles.html" class="text-gray-600 hover:text-revizOrange transition-colors font-medium">Articles</a>
                 <a href="about.html" class="text-gray-600 hover:text-revizPurple transition-colors font-medium">About</a>
-                <a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-600 hover:text-gray-800 transition-colors font-medium">Submit</a>
+                <a href="submit_manuscript.html" class="text-gray-600 hover:text-gray-800 transition-colors font-medium">Submit</a>
             </div>
             <div class="flex-1 flex items-center justify-end space-x-4">
-                <button class="md:hidden text-gray-600">
+                <button class="md:hidden text-gray-600" id="mobile-menu-button">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
+        </div>
+        <div class="hidden md:hidden" id="mobile-menu">
+            <a href="index.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
+            <a href="articles.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Articles</a>
+            <a href="about.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a>
+            <a href="submit_manuscript.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Submit</a>
         </div>
     </nav>
 
@@ -232,7 +238,7 @@
                         <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm">Home</a></li>
                         <li><a href="articles.html" class="text-gray-400 hover:text-white transition-colors text-sm">Articles</a></li>
                         <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors text-sm">About</a></li>
-                        <li><a href="http://localhost/ojs-3.5.0-1/index.php/revisx/submissions" class="text-gray-400 hover:text-white transition-colors text-sm">Submit</a></li>
+                        <li><a href="submit_manuscript.html" class="text-gray-400 hover:text-white transition-colors text-sm">Submit</a></li>
                     </ul>
                 </div>
                 <div>
