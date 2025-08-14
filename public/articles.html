@@ -43,9 +43,15 @@
                 background-position: 0% 50%;
             }
         }
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1717501218257-98bfcc8a2e9a?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
         @media (max-width: 767px) {
             .logo {
                 max-width: 150px !important;
+            }
+            .hero-section {
+                background-image: url('https://images.unsplash.com/photo-1717501218198-816a64915f81?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') !important;
             }
         }
     </style>
@@ -98,8 +104,8 @@
         </div>
     </nav>
 
-    <section class="relative h-[60vh] md:h-[85vh] flex items-center text-white overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1717501218257-98bfcc8a2e9a?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+    <section class="relative h-[60vh] md:h-[85vh] flex items-center text-white overflow-hidden hero-section">
+        <div class="absolute inset-0 bg-cover bg-center"></div>
         <div class="absolute inset-0 bg-black/60"></div>
         
         <div class="relative z-10 container mx-auto pl-4 sm:pl-6 lg:pl-8 pr-4 sm:pr-6 lg:pr-8 text-left">
