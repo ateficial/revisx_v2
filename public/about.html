@@ -259,20 +259,10 @@
     </footer>
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenuContainer = document.getElementById('mobile-menu-container');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenuContainer.classList.toggle('hidden');
-            mobileMenu.classList.toggle('open');
-            document.body.classList.toggle('menu-open');
-        });
-
-        mobileMenuOverlay.addEventListener('click', () => {
-            mobileMenuContainer.classList.toggle('hidden');
-            mobileMenu.classList.toggle('open');
-            document.body.classList.toggle('menu-open');
+            mobileMenu.classList.toggle('hidden');
         });
     </script>
 </body>

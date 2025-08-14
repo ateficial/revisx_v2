@@ -50,6 +50,9 @@
             .relative.h-\[60vh\] {
                 height: 80vh;
             }
+            body.menu-open {
+                overflow: hidden;
+            }
         }
     </style>
     <script>
@@ -93,13 +96,25 @@
                 </button>
             </div>
         </div>
-        <div class="hidden md:hidden" id="mobile-menu">
-            <a href="index.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
-            <a href="articles.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Articles</a>
-            <a href="about.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a>
-            <a href="submit_manuscript.html" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Submit</a>
-        </div>
     </nav>
+
+    <!-- Mobile Menu (Off-canvas) -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <div class="flex justify-end p-4">
+            <button id="mobile-menu-close-button" class="text-gray-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col p-4 space-y-2">
+            <a href="index.html" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Home</a>
+            <a href="articles.html" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Articles</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">About</a>
+            <a href="submit_manuscript.html" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded-md">Submit</a>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
 
     <section class="relative h-[60vh] md:h-[85vh] flex items-center text-white overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1717501218257-98bfcc8a2e9a?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
@@ -209,7 +224,7 @@
                     </div>
                 </a>
                 <a href="#" class="flex flex-col md:flex-row items-start w-full bg-white rounded-xl shadow border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group min-h-[120px] article-card" data-type="literature" data-year="2023">
-                    <img src="https://images.unsplash.com/photo-1582719366768-de4481b828ce?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Machine Learning" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
+                    <img src="https://images.unsplash.com/photo-1602052577122-f73b9710adba?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Machine Learning" class="w-full h-auto md:w-20 md:h-20 object-cover rounded-lg mb-4 md:mb-0 md:mr-4 flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
                     <div class="flex flex-col flex-1 min-w-0">
                         <div class="flex flex-col md:flex-row justify-between items-start mb-1">
                             <h2 class="font-bold text-lg text-gray-800 group-hover:text-revizBlue transition-colors leading-snug article-title">Machine Learning in Healthcare</h2>
